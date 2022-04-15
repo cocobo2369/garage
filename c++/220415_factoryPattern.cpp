@@ -6,20 +6,20 @@ using namespace std;
 class Point{
     float x;
     float y;
-public :
+protected :
     Point(const float x, const float y) : x(x),y(y){}
-/*
-    Point(const float r, const float theta){
-        x = r*cos(theta);
-        y = r*sin(theta);
+
+public:
+    static Point Cartesian(float x, float y)
+    {
+        return {x,y};
     }
-error: ‘Point::Point(float, float)’ cannot be overloaded with ‘Point::Point(float, float)’
-   11 |     Point(const float r, const float theta){
-      |     ^~~~~
-note: previous declaration ‘Point::Point(float, float)’
-   10 |     Point(const float x, const float y) : x(x),y(y){}
-      |     ^~~~~
-*/
+
+    static Point Polar(float r, float theta)
+    {
+        return { r*cos(theta), r*sin(theta) };
+    }
+
     void printPoint(){
         cout << "x : " << x << endl;
         cout << "y : " << y << endl;
@@ -27,9 +27,12 @@ note: previous declaration ‘Point::Point(float, float)’
 };
 
 int main(){
+    //생성자가 드러나지 않음, 코드의 가독성도 좋음
+    Point p1 = Point::Cartesian(1.3,2.5);
+    p1.printPoint();
 
-    Point p(1.2,2.0);
-    p.printPoint();
+    auto p2 = Point::Polar(2,0.5);
+    p2.printPoint();
 
     return 0;
 }
