@@ -1,0 +1,32 @@
+@startuml
+
+abstract abstract{
+    templateMethod()
+    general()
+    {abstract} hook1()
+    {abstract} hook2()
+}
+
+note left of abstract : templateMethod(){\
+\n  hook1() \
+\n  general() \
+\n  ... \
+\n  hook2() \
+\n  ... \
+\n }
+
+class concrete1{
+    hook1()
+    hook2()
+}
+
+class concrete2{
+    hook1()
+    hook2()
+}
+abstract <|-- concrete1
+abstract --> concrete1
+
+abstract <|-- concrete2
+abstract --> concrete2
+@enduml

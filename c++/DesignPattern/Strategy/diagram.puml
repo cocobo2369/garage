@@ -1,0 +1,22 @@
+@startuml
+
+class client{
+    +contextfunc()
+    +parent P
+}
+note left of client : contextfunc()\n{ \n <b>parent.func()</b>\n}
+
+abstract parent{
+{abstract} func()
+}
+
+class child1{
+func()
+}
+class child2{
+func()
+}
+client o-right- parent
+parent <|-- child1
+parent <|-- child2
+@enduml
